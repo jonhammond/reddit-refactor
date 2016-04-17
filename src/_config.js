@@ -1,5 +1,4 @@
 var config = {};
-// var flask = require('flask');
 
 config.mongoURI = {
   development: 'mongodb://localhost/reddit-mean-app',
