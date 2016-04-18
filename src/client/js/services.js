@@ -1,4 +1,4 @@
-app.service('postService', ['crudService', function(crudService) {
+app.service('postsService', ['crudService', function(crudService) {
 
   return {
     getAllPosts: function() {

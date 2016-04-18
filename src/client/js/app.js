@@ -1,4 +1,4 @@
-var app = angular.module('meanReddit', ['ngAnimate', 'ngRoute']);
+var app = angular.module('meanReddit', ['ngRoute', 'ngAnimate']);
 
 app.controller('myController', ['$scope', function($scope) {
   $scope.greeting = 'Angulaaaaaaaar!';
