@@ -1,0 +1,78 @@
+<div class="container" ng-controller="postsController">
+  <!-- NAVBAR -->
+  <div class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Reddit Clone</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a class="navbar-brand" href="#" ng-click="formClick= formClick+1">+ Submit Post</a></li>
+      </ul>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" ng-model="search">
+          </div>
+        </form>
+        <div class="input-group-btn">
+          <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By<span class="caret"></span></a>
+          <ul class="dropdown-menu" ng-model="sorts">
+            <li class="dropdown" ng-click="sorting = 'voteCount'"><a href="#">Votes</a></li>
+            <li class="dropdown" ng-click="sorting = 'date'"><a href="#">Date</a></li>
+          </ul>
+        </div>
+    </div>
+
+    <div class="new" ng-show="formClick%2!=0">
+      <form action="#" ng-submit="submit(newPost)">
+        <label for="title">Title</label><br>
+        <input ng-model="newPost.title" type="text" placeholder="Title"><br>
+        <label for="author">Author</label><br>
+        <input ng-model="newPost.postedBy" type="text" placeholder="Author"><br>
+        <label for="imgUrl">Image URL</label><br>
+        <input ng-model="newPost.imgUrl" type="text" placeholder="Image URL"><br>
+        <label for="description">Description</label><br>
+        <input ng-model="newPost.description" type="text" placeholder="Description"><br>
+        <input type="submit" value="Submit Post"><br>
+      </form>
+    </div>
+  </div>
+  <!-- END OF NAVBAR -->
+
+  <!-- ALL POSTS -->
+  <div ng-repeat="post in postsObject | filter: search | orderBy : sorting" class="fadeIn fadeOut">
+    <div class="postBox">
+      <div class="container row">
+        <img class="postImg" ng-src="{{ post.imgUrl }}">
+        <!-- POST INFORMATION -->
+        <div class="info">
+          <!-- VOTE ARROWS -->
+          <h3>{{ post.title }} | <a class="arrow" href="#" ng-click="post.voteCount = post.voteCount + 1">&#11014; </a>
+          <a class="arrow" href="#" ng-click="post.voteCount = post.voteCount - 1">&#11015;</a>
+          <span ng-class="{'text-success': post.voteCount>0, 'text-danger': post.voteCount<0, 'text-warning': post.voteCount==0}">{{ post.voteCount }}</span>
+          <span class="user">By {{ post.postedBy }}</span>
+          </h3>
+          <!-- POST DESCRIPTION -->
+          <p>{{ post.description }}</p>
+          <div class="separator">
+            <p>Date posted: {{ post.date | date : 'fullDate' }}</p>
+            <!-- COMMENTS -->
+            <p><a href="#" ng-click="commentClick=!commentClick + 1">&#128488; {{ post.commentCount }} Comments</a></p>
+            <p><a ng-click="addCommentClick=addCommentClick + 1" href="#">&#9998; Add Comment</a></p>
+          </div>
+          <div ng-show="commentClick%2!=0" ng-repeat="comment in post.comments">
+            <p>{{ comment.author }}: '{{ comment.text }}'</p>
+          </div>
+          <!-- ADD COMMENT FORM -->
+          <div ng-show="addCommentClick%2!=0">
+            <form ng-submit="addComment(comment)">
+              <input type="text" name="author" placeholder="Author" ng-model="comment.author">
+              <input type="text" name="comment" placeholder="Comment" ng-model="comment.text">
+              <input type="submit" value="Add Comment">
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div> <!-- END OF CONTAINER -->

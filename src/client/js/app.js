@@ -1,5 +1,5 @@
-// add scripts
+var app = angular.module('meanReddit', ['ngAnimate', 'ngRoute']);
 
-$(document).on('ready', function() {
-  console.log('sanity check!');
-});
+app.controller('myController', ['$scope', function($scope) {
+  $scope.greeting = 'Angulaaaaaaaar!';
+}])
