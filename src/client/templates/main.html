@@ -3,10 +3,10 @@
   <div class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Reddit Clone</a>
+        <a class="navbar-brand" href="#/">Reddit Clone</a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a class="navbar-brand" href="#" ng-click="formClick= formClick+1">+ Submit Post</a></li>
+        <li><a class="navbar-brand" href="#/" ng-click="formClick= formClick+1">+ Submit Post</a></li>
       </ul>
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
@@ -14,10 +14,10 @@
           </div>
         </form>
         <div class="input-group-btn">
-          <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By<span class="caret"></span></a>
+          <a href="#/" class="dropdown-toggle navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By<span class="caret"></span></a>
           <ul class="dropdown-menu" ng-model="sorts">
-            <li class="dropdown" ng-click="sorting = 'voteCount'"><a href="#">Votes</a></li>
-            <li class="dropdown" ng-click="sorting = 'date'"><a href="#">Date</a></li>
+            <li class="dropdown" ng-click="sorting = 'voteCount'"><a href="#/">Votes</a></li>
+            <li class="dropdown" ng-click="sorting = 'date'"><a href="#/">Date</a></li>
           </ul>
         </div>
     </div>
@@ -46,8 +46,8 @@
         <!-- POST INFORMATION -->
         <div class="info">
           <!-- VOTE ARROWS -->
-          <h3>{{ post.title }} | <a class="arrow" href="#" ng-click="post.voteCount = post.voteCount + 1">&#11014; </a>
-          <a class="arrow" href="#" ng-click="post.voteCount = post.voteCount - 1">&#11015;</a>
+          <h3>{{ post.title }} | <a class="arrow" href="#/" ng-click="post.voteCount = post.voteCount + 1">&#11014; </a>
+          <a class="arrow" href="#/" ng-click="post.voteCount = post.voteCount - 1">&#11015;</a>
           <span ng-class="{'text-success': post.voteCount>0, 'text-danger': post.voteCount<0, 'text-warning': post.voteCount==0}">{{ post.voteCount }}</span>
           <span class="user">By {{ post.postedBy }}</span>
           </h3>
@@ -56,8 +56,8 @@
           <div class="separator">
             <p>Date posted: {{ post.date | date : 'fullDate' }}</p>
             <!-- COMMENTS -->
-            <p><a href="#" ng-click="commentClick=!commentClick + 1">&#128488; {{ post.commentCount }} Comments</a></p>
-            <p><a ng-click="addCommentClick=addCommentClick + 1" href="#">&#9998; Add Comment</a></p>
+            <p><a href="#/" ng-click="commentClick=!commentClick + 1">&#128488; {{ post.commentCount }} Comments</a></p>
+            <p><a ng-click="addCommentClick=addCommentClick + 1" href="#/">&#9998; Add Comment</a></p>
           </div>
           <div ng-show="commentClick%2!=0" ng-repeat="comment in post.comments">
             <p>{{ comment.author }}: '{{ comment.text }}'</p>
